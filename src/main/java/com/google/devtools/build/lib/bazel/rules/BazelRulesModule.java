@@ -45,6 +45,17 @@ public final class BazelRulesModule extends BlazeModule {
   public static class BuildGraveyardOptions extends OptionsBase {
 
     @Option(
+        name = "build_python_zip",
+        defaultValue = "auto",
+        documentationCategory = OptionDocumentationCategory.UNDOCUMENTED,
+        effectTags = {OptionEffectTag.NO_OP},
+        deprecationWarning =
+            "The '--no' prefix is no longer supported for this flag. Please use"
+                + " --build_python_zip=false instead.",
+        help = "Deprecated. No-op.")
+    public TriState buildPythonZip;
+
+    @Option(
         name = "incompatible_use_python_toolchains",
         defaultValue = "true",
         documentationCategory = OptionDocumentationCategory.UNDOCUMENTED,
