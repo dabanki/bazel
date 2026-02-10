@@ -788,6 +788,11 @@ class OptionsParserImpl {
           if (unconvertedValue != null) {
             throw new OptionsParsingException("Unexpected value after boolean option: " + arg, arg);
           }
+          // Check if the no-prefix option name is used on a deprecated option with an alias.
+          if (flagAliasMappings.containsKey(name)) {
+            warnings.add(
+                String.format("Flag --no%s is deprecated. Use --%s=false instead.", name, name));
+          }
           // "no<optionname>" signifies a boolean option w/ false value
           unconvertedValue = "0";
         }
